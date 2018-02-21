@@ -1,8 +1,7 @@
-require 'bike'
+require 'boris_bikes'
 
 describe Bike do
   it "a test"  do
-    bike = Bike.new
-    expect(bike.respond_to?(:working?)).to eq true
+    expect(subject.respond_to?(:working?)).to eq true
   end
 end

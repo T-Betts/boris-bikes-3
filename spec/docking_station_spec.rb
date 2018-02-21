@@ -1,4 +1,4 @@
-require 'bike'
+require 'boris_bikes'
 
 describe DockingStation do
   # it 'responds to release_bike' do

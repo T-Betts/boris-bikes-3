@@ -1,1 +1,2 @@
-# boris bikes challenge #
+# Boris Bikes Challenge #
+This program emulates the Boris Bike System
