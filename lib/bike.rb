@@ -24,7 +24,7 @@ class DockingStation
       raise "Docking station empty"
     else
       @arr.delete(bike)
-      @arr.count
+      p "Remaining bike count: #{@arr.count}"
     end
   end
 
