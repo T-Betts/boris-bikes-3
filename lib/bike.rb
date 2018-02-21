@@ -5,26 +5,26 @@ class Bike
 end
 
 class DockingStation
-
   def initialize
     @arr = []
   end
 
-  def create_bike
-    Bike.new
-  end
-
   def dock(bike)
-    @bike = bike
-    @arr << @bike
+    if @arr.count >= 1
+      raise 'Capacity reached'
+    else
+      @bike = bike
+      @arr << @bike
+    end
   end
 
   def release_bike(bike)
     if @arr.empty?
-      raise "Docking station empty"
+      raise 'Docking station empty'
     else
       @arr.delete(bike)
       p "Remaining bike count: #{@arr.count}"
+
     end
   end
 

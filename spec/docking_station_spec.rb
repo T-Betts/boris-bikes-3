@@ -4,7 +4,7 @@ describe DockingStation do
   # it 'responds to release_bike' do
   #  expect(subject).to respond_to :release_bike
   # end
-  it { is_expected.to respond_to :create_bike }
+  it { is_expected.to respond_to :release_bike }
 
   # station = DockingStation.new
   # it 'gets a bike and expects bike to be working' do
@@ -13,21 +13,29 @@ describe DockingStation do
   # end
 
   it 'gets a bike and expects bike to be working' do
-    expect(subject.create_bike).to be_instance_of Bike
-    expect(subject.create_bike.working?).to eq true
+    bike = Bike.new
+    expect(bike).to be_instance_of Bike
+    expect(bike.working?).to eq true
   end
 
   it 'adds bike to DockingStation' do
     bike = Bike.new
     subject.dock(bike)
-    expect((subject.arr).include?(bike)).to eq true
+    expect(subject.arr.include?(bike)).to eq true
   end
 
   it 'raises error if docking station is empty otherwise release bike' do
     bike = Bike.new
-    expect {subject.release_bike(bike)}.to raise_error("Docking station empty")
+    expect { subject.release_bike(bike) }.to raise_error('Docking station empty')
     subject.dock(bike)
-    expect(subject.release_bike(bike)).to eq 0
+    expect(subject.release_bike(bike)).to eq 'Remaining bike count: 0'
   end
 
+  it 'raises error when docking is full' do
+    bike1 = Bike.new
+    bike2 = Bike.new
+    d_s = DockingStation.new
+    d_s.dock(bike1)
+    expect { d_s.dock(bike2) }.to raise_error('Capacity reached')
+  end
 end
