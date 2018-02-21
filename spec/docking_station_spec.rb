@@ -25,14 +25,11 @@ describe DockingStation do
   end
 
   it 'raises error if docking station is empty otherwise releases bike' do
-    bike = Bike.new
-    expect { subject.release_bike(bike) }.to raise_error('Docking station empty')
-    subject.dock(bike)
-    expect(subject.release_bike(bike)).to eq 'Remaining bike count: 0'
+    expect(subject.release_bike).to eq "Remaining bike count: 19"
+    expect { 21.times {subject.release_bike} }.to raise_error('Docking station empty')
   end
 
-  it 'cannot hold more than 100 bikes' do
-    d_s = DockingStation.new
-    expect { 101.times { d_s.dock(Bike.new) } }.to raise_error('Capacity reached')
+  it 'raises error when full' do
+    expect { 101.times { subject.dock(Bike.new) } }.to raise_error('Capacity reached')
   end
 end

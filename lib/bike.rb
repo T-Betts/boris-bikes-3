@@ -11,22 +11,15 @@ class DockingStation
   end
 
   def dock(bike)
-    if @docked_bikes.count >= 100
-      raise 'Capacity reached'
-    else
-      @bike = bike
-      @docked_bikes << @bike
-    end
+    fail 'Capacity reached' if @docked_bikes.count >= 100
+    @bike = bike
+    @docked_bikes << @bike
   end
 
-  def release_bike(bike)
-    if @docked_bikes.empty?
-      raise 'Docking station empty'
-    else
-      @docked_bikes.delete(bike)
-      p "Remaining bike count: #{@docked_bikes.count}"
-
-    end
+  def release_bike
+    fail 'Docking station empty' if @docked_bikes.empty?
+    @docked_bikes.pop
+    "Remaining bike count: #{@docked_bikes.count}"
   end
 
   attr_reader :docked_bikes
