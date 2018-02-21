@@ -7,10 +7,11 @@ end
 class DockingStation
   def initialize
     @docked_bikes = []
+    20.times {self.dock(Bike.new)}
   end
 
   def dock(bike)
-    if @docked_bikes.count >= 20
+    if @docked_bikes.count >= 100
       raise 'Capacity reached'
     else
       @bike = bike

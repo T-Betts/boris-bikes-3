@@ -24,22 +24,15 @@ describe DockingStation do
     expect(subject.docked_bikes.include?(bike)).to eq true
   end
 
-  it 'raises error if docking station is empty otherwise release bike' do
+  it 'raises error if docking station is empty otherwise releases bike' do
     bike = Bike.new
     expect { subject.release_bike(bike) }.to raise_error('Docking station empty')
     subject.dock(bike)
     expect(subject.release_bike(bike)).to eq 'Remaining bike count: 0'
   end
 
-  it 'it can hold 20 bikes in the dock' do
+  it 'cannot hold more than 100 bikes' do
     d_s = DockingStation.new
-    expect do
-      20.times { d_s.dock(Bike.new) }
-    end.not_to raise_error('Capacity reached')
-  end
-
-  it 'it cant more than 20 bikes in the dock' do
-    d_s = DockingStation.new
-    expect { 21.times { d_s.dock(Bike.new) } }.to raise_error('Capacity reached')
+    expect { 101.times { d_s.dock(Bike.new) } }.to raise_error('Capacity reached')
   end
 end
