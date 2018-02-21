@@ -6,27 +6,27 @@ end
 
 class DockingStation
   def initialize
-    @arr = []
+    @docked_bikes = []
   end
 
   def dock(bike)
-    if @arr.count >= 1
+    if @docked_bikes.count >= 20
       raise 'Capacity reached'
     else
       @bike = bike
-      @arr << @bike
+      @docked_bikes << @bike
     end
   end
 
   def release_bike(bike)
-    if @arr.empty?
+    if @docked_bikes.empty?
       raise 'Docking station empty'
     else
-      @arr.delete(bike)
-      p "Remaining bike count: #{@arr.count}"
+      @docked_bikes.delete(bike)
+      p "Remaining bike count: #{@docked_bikes.count}"
 
     end
   end
 
-  attr_reader :arr
+  attr_reader :docked_bikes
 end
