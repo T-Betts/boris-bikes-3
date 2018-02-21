@@ -28,5 +28,5 @@ class DockingStation
     end
   end
 
-  attr_reader :bike, :arr
+  attr_reader :arr
 end
